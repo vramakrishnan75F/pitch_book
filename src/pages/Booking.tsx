@@ -53,7 +53,7 @@ declare global {
   interface Window {
     Razorpay?: new (options: RazorpayOptions) => {
       open: () => void
-      on: (event: string, callback: () => void) => void
+      on: (event: string, callback: (response?: unknown) => void) => void
     }
   }
 }
@@ -171,6 +171,12 @@ function Booking() {
           },
         )
 
+        const orderResponseBody = await orderResponse.clone().text()
+        console.log('Razorpay create-order response', {
+          status: orderResponse.status,
+          body: orderResponseBody,
+        })
+
         if (!orderResponse.ok) {
           setPaymentMessage('Unable to start payment.')
           setIsProcessingPayment(false)
@@ -218,13 +224,26 @@ function Booking() {
           },
         })
 
-        razorpay.on('payment.failed', () => {
+        razorpay.on('payment.failed', (response: any) => {
+          console.log('Razorpay payment.failed full response', response)
+          console.log('Razorpay error.code', response?.error?.code)
+          console.log('Razorpay error.description', response?.error?.description)
+          console.log('Razorpay error.reason', response?.error?.reason)
+          console.log('Razorpay error.source', response?.error?.source)
+          console.log('Razorpay error.step', response?.error?.step)
+          console.log('Razorpay error.metadata', response?.error?.metadata)
           setPaymentMessage('Payment cancelled.')
           setIsProcessingPayment(false)
         })
 
-        razorpay.open()
-      } catch {
+        try {
+          razorpay.open()
+        } catch (error) {
+          console.error('Razorpay open() threw exception', error)
+          throw error
+        }
+      } catch (error) {
+        console.error('Booking payment flow exception', error)
         setPaymentMessage('Unable to start payment.')
         setIsProcessingPayment(false)
       }
