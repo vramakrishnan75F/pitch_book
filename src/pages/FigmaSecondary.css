@@ -1,0 +1,384 @@
+.figma-page {
+  background: #f7f9fa;
+  min-height: 100vh;
+  padding: 32px 0;
+  font-family: Manrope, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+.figma-container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.figma-hero-strip {
+  background: linear-gradient(140deg, #0f7b45, #1e9f5f);
+  color: #fff;
+  border-radius: 18px;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 18px 34px rgba(15, 123, 69, 0.25);
+}
+
+.figma-hero-strip .figma-row {
+  margin-bottom: 8px;
+}
+
+.figma-hero-strip .figma-row h1 {
+  color: #fff;
+}
+
+.figma-page-title {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 900;
+  color: #15202b;
+}
+
+.figma-h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #15202b;
+}
+
+.figma-p {
+  margin: 0;
+  color: #15202b;
+  line-height: 1.45;
+}
+
+.figma-subtext {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+}
+
+.figma-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.figma-row h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 900;
+  color: #15202b;
+}
+
+.figma-link {
+  color: #0f7b45;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.figma-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.figma-card {
+  background: #fff;
+  border: 1px solid rgba(21, 32, 43, 0.08);
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.figma-card h3 {
+  margin: 0 0 8px;
+}
+
+.figma-price {
+  font-weight: 800;
+  color: #0f7b45;
+}
+
+.figma-venue-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.figma-venue-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.figma-card-body {
+  padding: 16px;
+}
+
+.figma-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.figma-top-actions {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.figma-actions a {
+  text-decoration: none;
+}
+
+.figma-actions button,
+.figma-card > button,
+.figma-slots button,
+.success-link {
+  border: 1px solid rgba(21, 32, 43, 0.12);
+  background: #fff;
+  color: #15202b;
+  border-radius: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.figma-actions button:last-child,
+.figma-card > button,
+.success-link-primary {
+  background: #0f7b45;
+  color: #fff;
+  border-color: #0f7b45;
+}
+
+.figma-detail-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 20px;
+}
+
+.figma-detail-image {
+  width: 100%;
+  border-radius: 16px;
+  object-fit: cover;
+  min-height: 360px;
+}
+
+.figma-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0 16px;
+}
+
+.figma-tags span {
+  background: #e8f5ee;
+  color: #0f7b45;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.figma-slots {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.figma-slots button.active {
+  background: #0f7b45;
+  color: #fff;
+  border-color: #0f7b45;
+}
+
+.figma-compact-tags {
+  margin-top: 8px;
+}
+
+.figma-compact-tags span {
+  font-size: 11px;
+}
+
+.figma-stack {
+  display: grid;
+  gap: 12px;
+}
+
+.figma-empty {
+  text-align: center;
+}
+
+.booking-grid {
+  align-items: start;
+}
+
+.booking-summary p {
+  margin: 8px 0;
+}
+
+.booking-summary {
+  position: sticky;
+  top: 24px;
+}
+
+.figma-form {
+  display: grid;
+  gap: 10px;
+}
+
+.figma-form label {
+  font-weight: 700;
+  color: #15202b;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.figma-form input {
+  border: 1px solid rgba(21, 32, 43, 0.14);
+  border-radius: 10px;
+  padding: 12px 12px;
+  font-size: 15px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.figma-form input:focus {
+  outline: none;
+  border-color: rgba(15, 123, 69, 0.7);
+  box-shadow: 0 0 0 3px rgba(15, 123, 69, 0.14);
+}
+
+.figma-form button {
+  margin-top: 6px;
+}
+
+.figma-pay-btn {
+  margin-top: 6px;
+  border: 1px solid #0f7b45;
+  background: #0f7b45;
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 700;
+}
+
+.figma-pay-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.72;
+}
+
+.success-card {
+  max-width: 860px;
+  margin: 0 auto;
+  box-shadow: 0 16px 30px rgba(21, 32, 43, 0.08);
+}
+
+.success-head h1 {
+  margin: 10px 0 8px;
+}
+
+.success-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  background: #dff5e8;
+  color: #0f7b45;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.success-subtitle {
+  margin-top: 0;
+  color: #4e5d69;
+}
+
+.success-fields {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.success-field-row {
+  border: 1px solid rgba(21, 32, 43, 0.09);
+  border-radius: 12px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.success-field-label {
+  color: #4e5d69;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.success-field-value {
+  color: #15202b;
+  font-weight: 800;
+  text-align: right;
+}
+
+.success-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 20px;
+  margin-bottom: 16px;
+}
+
+.success-grid p {
+  margin: 0;
+}
+
+.booking-history-card p {
+  margin: 4px 0;
+}
+
+.booking-mini-row {
+  margin-bottom: 10px;
+}
+
+.booking-status {
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.booking-status.is-upcoming {
+  color: #0f7b45;
+  background: #dff5e8;
+}
+
+.booking-status.is-completed {
+  color: #4e5d69;
+  background: #e9eef2;
+}
+
+.profile-grid {
+  margin-bottom: 14px;
+}
+
+@media (max-width: 900px) {
+  .figma-grid,
+  .figma-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .figma-hero-strip .figma-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .success-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-summary {
+    position: static;
+  }
+}
