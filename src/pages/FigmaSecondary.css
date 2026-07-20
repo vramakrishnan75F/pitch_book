@@ -354,6 +354,17 @@
   border-color: #0f7b45;
 }
 
+.figma-actions button:disabled,
+.figma-card > button:disabled,
+.figma-slots button:disabled {
+  background: #e5e7eb;
+  color: #6b7280;
+  border-color: #d1d5db;
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 1;
+}
+
 .figma-detail-grid {
   display: grid;
   grid-template-columns: 1.3fr 1fr;

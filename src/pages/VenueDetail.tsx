@@ -1,5 +1,6 @@
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
+import AvailabilityTimeline, { type AvailabilitySlot } from '../components/ui/AvailabilityTimeline'
 import Button from '../components/ui/Button'
 import Text from '../components/ui/Text'
 import AppLayout from '../layouts/AppLayout'
@@ -8,10 +9,10 @@ import { figmaVenues } from './figmaData'
 import './FigmaSecondary.css'
 
 const HOURS = Array.from({ length: 24 }, (_, index) => index)
-const UNAVAILABLE_HOURS = [9, 10, 14, 18]
+const BOOKED_HOURS = [9, 10, 14, 18]
 
 function formatHour(hour: number): string {
-  return `${String(hour).padStart(2, '0')}:00`
+  return String(hour).padStart(2, '0')
 }
 
 function formatSelectedRanges(hours: number[]): string {
@@ -68,7 +69,8 @@ function VenueDetail() {
     )
   }
 
-  const availableHours = HOURS.filter((hour) => hour >= 6 && hour <= 22 && !UNAVAILABLE_HOURS.includes(hour))
+  const timelineHours = HOURS.filter((hour) => hour >= 6 && hour <= 22)
+  const availableHours = timelineHours.filter((hour) => !BOOKED_HOURS.includes(hour))
 
   const selectedSlot = formatSelectedRanges(selectedHours)
 
@@ -85,6 +87,12 @@ function VenueDetail() {
       return [...previous, hour].sort((left, right) => left - right)
     })
   }
+
+  const timelineSlots: AvailabilitySlot[] = timelineHours.map((hour) => ({
+    hour,
+    state: BOOKED_HOURS.includes(hour) ? 'booked' : 'available',
+    isSelected: selectedHours.includes(hour),
+  }))
 
   return (
     <AppLayout fullBleed showHeader={false} showFooter={false}>
@@ -129,58 +137,22 @@ function VenueDetail() {
               </Button>
             ) : (
               <>
-                <div className="figma-slot-head">
-                  <Text as="h3" unstyled className="figma-h3">Select 1-Hour Slots (24-Hour Timeline)</Text>
-                  <button
-                    type="button"
-                    className="figma-slot-info"
-                    aria-label="Slot selection help"
-                  >
-                    i
-                    <span className="figma-slot-tooltip">
-                      Green = Available, Grey = Unavailable. You can select multiple 1-hour slots.
-                    </span>
-                  </button>
-                </div>
+                <Text as="h3" unstyled className="figma-h3 mb-2.5">
+                  Availability Timeline
+                </Text>
 
-                <div
-                  style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(6, minmax(0, 1fr))',
-                    gap: 8,
-                    marginBottom: 14,
+                <AvailabilityTimeline
+                  slots={timelineSlots}
+                  onSlotClick={(slot) => {
+                    if (slot.state !== 'available') {
+                      return
+                    }
+
+                    toggleHourSelection(slot.hour)
                   }}
-                >
-                  {HOURS.map((hour) => {
-                    const isAvailable = availableHours.includes(hour)
-                    const isSelected = selectedHours.includes(hour)
+                />
 
-                    return (
-                      <button
-                        key={hour}
-                        type="button"
-                        onClick={() => toggleHourSelection(hour)}
-                        disabled={!isAvailable}
-                        style={{
-                          border: isSelected ? '1px solid #0f7b45' : '1px solid rgba(21, 32, 43, 0.14)',
-                          background: isSelected ? '#0f7b45' : isAvailable ? '#dff5e8' : '#eef1f3',
-                          color: isSelected ? '#fff' : isAvailable ? '#0f7b45' : '#8b97a3',
-                          borderRadius: 10,
-                          padding: '10px 8px',
-                          fontWeight: 700,
-                          cursor: isAvailable ? 'pointer' : 'not-allowed',
-                          opacity: isAvailable ? 1 : 0.7,
-                          textAlign: 'left',
-                        }}
-                      >
-                        <span style={{ display: 'block', fontSize: 12 }}>{formatHour(hour)}</span>
-                        <span style={{ display: 'block', fontSize: 11, marginTop: 2 }}>+1h</span>
-                      </button>
-                    )
-                  })}
-                </div>
-
-                <Text as="p" unstyled className="figma-p" style={{ marginBottom: 14, fontWeight: 700 }}>
+                <Text as="p" unstyled className="figma-p mb-3.5 font-bold">
                   {selectedHours.length > 0
                     ? `Selected: ${selectedSlot}`
                     : 'No slot selected yet.'}
