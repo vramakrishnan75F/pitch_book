@@ -2,8 +2,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Button from '../components/ui/Button'
 import Text from '../components/ui/Text'
 import AppLayout from '../layouts/AppLayout'
-import type { BaseBookingData } from '../types/booking'
-import { figmaSlots, figmaVenues } from './figmaData'
+import { figmaVenues } from './figmaData'
 import './FigmaSecondary.css'
 
 function Search() {
@@ -65,22 +64,10 @@ function Search() {
                     ))}
                   </div>
                   <div className="figma-actions">
-                    <Button type="button" variant="unstyled" onClick={() => navigate(`/venue/${venue.id}`)}>
-                      View Details
-                    </Button>
                     <Button
                       type="button"
                       variant="unstyled"
-                      onClick={() => {
-                        const bookingData: BaseBookingData = {
-                          pitchName: venue.name,
-                          location: venue.location,
-                          sport: venue.sport,
-                          price: venue.pricePerHour,
-                          selectedSlot: figmaSlots[0],
-                        }
-                        navigate('/book', { state: { bookingData } })
-                      }}
+                      onClick={() => navigate(`/venue/${venue.id}`, { state: { openBookingTimeline: true } })}
                     >
                       Book Now
                     </Button>

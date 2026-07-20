@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
 import Button from '../components/ui/Button'
 import Text from '../components/ui/Text'
@@ -47,10 +47,12 @@ function formatSelectedRanges(hours: number[]): string {
 
 function VenueDetail() {
   const navigate = useNavigate()
+  const location = useLocation()
   const params = useParams()
   const venueId = Number(params.id)
   const venue = figmaVenues.find((item) => item.id === venueId)
-  const [showTimeline, setShowTimeline] = useState(false)
+  const shouldOpenTimeline = (location.state as { openBookingTimeline?: boolean } | null)?.openBookingTimeline === true
+  const [showTimeline, setShowTimeline] = useState(shouldOpenTimeline)
   const [selectedHours, setSelectedHours] = useState<number[]>([])
 
   if (!venue) {
