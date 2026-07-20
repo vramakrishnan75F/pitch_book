@@ -58,7 +58,7 @@
   background: transparent;
   font-family: inherit;
   color: #fff;
-  font-size: 28px;
+  font-size: 86px;
   font-weight: 900;
   line-height: 1;
   letter-spacing: -0.02em;
@@ -118,7 +118,7 @@
 
 .landing-hero-title {
   margin: 0 0 16px;
-  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-size: clamp(2.1rem, 3.8vw, 3rem);
   line-height: 1.03;
   font-weight: 900;
   color: #fff;
@@ -197,9 +197,8 @@
   font-weight: 600;
 }
 
-.search-icon {
-  width: 18px;
-  text-align: center;
+.search-sport-icon {
+  color: #0f7b45;
 }
 
 .search-divider {
@@ -316,6 +315,16 @@
 
 .landing-chip-icon {
   font-size: 22px;
+}
+
+.landing-chip-icon-svg {
+  width: 24px;
+  height: 24px;
+  color: #0f7b45;
+}
+
+.landing-chip[data-active='true'] .landing-chip-icon-svg {
+  color: #fff;
 }
 
 .chip-label {
@@ -522,8 +531,15 @@
   padding: 56px;
 }
 
-.open-games-emoji {
-  font-size: 56px;
+.open-games-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  background: #e8f5ee;
+  color: #0f7b45;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 16px;
 }
 
@@ -825,12 +841,22 @@
 }
 
 .store-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   border-radius: 12px;
   border: 1px solid transparent;
   padding: 12px 18px;
   font-size: 14px;
   font-weight: 800;
   cursor: pointer;
+}
+
+.store-icon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
 }
 
 .store-btn.white {
@@ -1026,7 +1052,7 @@
   }
 
   .landing-hero-title {
-    font-size: 48px;
+    font-size: 34px;
   }
 
   .landing-hero-subtitle {

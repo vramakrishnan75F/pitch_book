@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   ArrowRight,
@@ -23,10 +23,53 @@ import type { BaseBookingData } from '../types/booking'
 import './Home.css'
 
 const sports = [
-  { id: 'football', label: 'Football', icon: '⚽', count: '240+' },
-  { id: 'cricket', label: 'Cricket', icon: '🏏', count: '85+' },
-  { id: 'badminton', label: 'Badminton', icon: '🏸', count: '320+' },
-  { id: 'tennis', label: 'Tennis', icon: '🎾', count: '160+' },
+  {
+    id: 'football',
+    label: 'Football',
+    icon: (
+      <svg viewBox="0 0 24 24" className="landing-chip-icon-svg" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1.8" />
+        <path d="M12 8.2 9.4 10l1 3h3.2l1-3z" fill="currentColor" />
+        <path d="m9.4 10-2.6.3M14.6 10l2.6.3M10.4 13l-1.2 2.3M13.6 13l1.2 2.3" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+      </svg>
+    ),
+    count: '240+',
+  },
+  {
+    id: 'cricket',
+    label: 'Cricket',
+    icon: (
+      <svg viewBox="0 0 24 24" className="landing-chip-icon-svg" aria-hidden="true">
+        <circle cx="17.5" cy="7" r="2.4" fill="none" stroke="currentColor" strokeWidth="1.8" />
+        <path d="M6.2 18.5 14 10.8a1.4 1.4 0 0 0 0-2l-.8-.8a1.4 1.4 0 0 0-2 0l-7.8 7.8a1.4 1.4 0 0 0 0 2l.8.7a1.4 1.4 0 0 0 2 0z" fill="none" stroke="currentColor" strokeWidth="1.8" />
+      </svg>
+    ),
+    count: '85+',
+  },
+  {
+    id: 'badminton',
+    label: 'Badminton',
+    icon: (
+      <svg viewBox="0 0 24 24" className="landing-chip-icon-svg" aria-hidden="true">
+        <path d="m11.8 6.2 4 4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        <path d="m8.3 9.8 6 6 1.7-1.8-6-6z" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+        <path d="m6 6 2.2-2.2 2.1 2.1L8 8.2z" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+      </svg>
+    ),
+    count: '320+',
+  },
+  {
+    id: 'tennis',
+    label: 'Tennis',
+    icon: (
+      <svg viewBox="0 0 24 24" className="landing-chip-icon-svg" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1.8" />
+        <path d="M6.5 8.8c2.8 0 4.3 1.7 4.3 3.2s-1.5 3.2-4.3 3.2" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+        <path d="M17.5 8.8c-2.8 0-4.3 1.7-4.3 3.2s1.5 3.2 4.3 3.2" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+      </svg>
+    ),
+    count: '160+',
+  },
 ]
 
 const venues = [
@@ -92,10 +135,10 @@ const venues = [
   },
 ]
 
-const howItWorks = [
-  { step: '01', icon: '🔍', title: 'Discover', desc: 'Search for venues near you by sport, location, date and time.' },
-  { step: '02', icon: '📅', title: 'Book a Slot', desc: 'Pick your preferred time slot and secure it in under 60 seconds.' },
-  { step: '03', icon: '⚽', title: 'Play & Enjoy', desc: 'Show up, play your game, and build your sports community.' },
+const howItWorks: { step: string; icon: ReactNode; title: string; desc: string }[] = [
+  { step: '01', icon: <Search size={28} />, title: 'Discover', desc: 'Search for venues near you by sport, location, date and time.' },
+  { step: '02', icon: <Calendar size={28} />, title: 'Book a Slot', desc: 'Pick your preferred time slot and secure it in under 60 seconds.' },
+  { step: '03', icon: <Trophy size={28} />, title: 'Play & Enjoy', desc: 'Show up, play your game, and build your sports community.' },
 ]
 
 const tournaments = [
@@ -132,7 +175,6 @@ function Home() {
   const [searchLocation, setSearchLocation] = useState('Bangalore')
   const [searchSport, setSearchSport] = useState('football')
   const [searchDate, setSearchDate] = useState('2025-08-03')
-  const [activeSport, setActiveSport] = useState('football')
   const [activeTab, setActiveTab] = useState<'venues' | 'open'>('venues')
   const [wishlist, setWishlist] = useState<number[]>([])
 
@@ -197,7 +239,11 @@ function Home() {
                   </div>
                   <div className="search-divider" />
                   <div className="search-field">
-                    <span className="search-icon">⚽</span>
+                    <svg viewBox="0 0 24 24" className="icon-svg search-sport-icon" aria-hidden="true">
+                      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1.8" />
+                      <path d="M12 8.2 9.4 10l1 3h3.2l1-3z" fill="currentColor" />
+                      <path d="m9.4 10-2.6.3M14.6 10l2.6.3" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+                    </svg>
                     <select
                       value={searchSport}
                       onChange={(event) => setSearchSport(event.target.value)}
@@ -277,10 +323,9 @@ function Home() {
                   type="button"
                   className="landing-chip"
                   onClick={() => {
-                    setActiveSport(sport.id)
-                    setSearchSport(sport.id)
+                    setSearchSport((current) => (current === sport.id ? '' : sport.id))
                   }}
-                  data-active={activeSport === sport.id}
+                  data-active={searchSport === sport.id}
                 >
                   <span className="landing-chip-icon">{sport.icon}</span>
                   <span className="chip-label">{sport.label}</span>
@@ -385,7 +430,9 @@ function Home() {
             </div>
           ) : (
             <div className="open-games-card">
-              <div className="open-games-emoji">🏃</div>
+              <div className="open-games-icon" aria-hidden="true">
+                <Users size={44} />
+              </div>
               <h3>Find Open Games Near You</h3>
               <p>
                 Join ongoing games and meet new players. Select your sport and area to see what is happening today.
@@ -475,8 +522,21 @@ function Home() {
             <h2>Your Game,<br /><span>Anywhere.</span></h2>
             <p>Book courts, join games, and manage your sports life from your pocket. The GoArena app is coming soon.</p>
             <div className="store-buttons">
-              <button type="button" className="store-btn white">🍎 App Store</button>
-              <button type="button" className="store-btn dark">▶ Google Play</button>
+              <button type="button" className="store-btn white">
+                <svg viewBox="0 0 24 24" className="store-icon" aria-hidden="true">
+                  <path d="M15.1 3.5c-.7.8-1.1 1.8-1 2.8 1 .1 2-.4 2.7-1.2.6-.7 1.1-1.8 1-2.8-.9 0-2 .5-2.7 1.2z" fill="currentColor" />
+                  <path d="M19 12.9c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.7-1.8-3.3-1.8-1.4-.1-2.7.8-3.4.8-.7 0-1.8-.8-3-.8-1.6 0-3 .9-3.9 2.3-1.7 3-.4 7.5 1.3 10 1 1.4 2.1 2.9 3.6 2.8 1.4-.1 1.9-.9 3.6-.9s2.2.9 3.6.9c1.5 0 2.4-1.3 3.4-2.8.8-1.2 1.2-2.4 1.2-2.4s-2.3-.9-2.3-4.6z" fill="currentColor" />
+                </svg>
+                App Store
+              </button>
+              <button type="button" className="store-btn dark">
+                <svg viewBox="0 0 24 24" className="store-icon" aria-hidden="true">
+                  <path d="M4.6 3.3c-.4.2-.6.6-.6 1.1v15.2c0 .5.2.9.6 1.1l9-8.7z" fill="currentColor" />
+                  <path d="m13.2 11.9 2.6-2.5-9.2-5.8 6.6 8.3zM13.2 12.1l2.6 2.5-9.2 5.8 6.6-8.3z" fill="currentColor" opacity="0.7" />
+                  <path d="m18.2 11.6-2.4-1.5-2.1 2 2.1 2 2.4-1.5c.8-.5.8-1.5 0-2z" fill="currentColor" />
+                </svg>
+                Google Play
+              </button>
             </div>
           </div>
           <div className="landing-app-cards">
