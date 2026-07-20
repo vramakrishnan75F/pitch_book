@@ -7,6 +7,7 @@ import Search from './pages/Search'
 import VenueDetail from './pages/VenueDetail'
 import MyBookings from './pages/MyBookings'
 import Profile from './pages/Profile'
+import OpenGames from './pages/OpenGames'
 
 function restoreGlobalScroll() {
   document
@@ -43,6 +44,7 @@ function App() {
       <Route path="/venue/:id" element={<VenueDetail />} />
       <Route path="/book" element={<Booking />} />
       <Route path="/bookings" element={<MyBookings />} />
+      <Route path="/open-games" element={<OpenGames />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/success" element={<Success />} />
     </Routes>

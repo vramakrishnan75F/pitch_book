@@ -256,6 +256,76 @@
   border-bottom: 1px solid rgba(21, 32, 43, 0.08);
 }
 
+.dev-persona-panel-wrap {
+  padding: 18px 0 10px;
+  background: #f7f9fa;
+}
+
+.dev-persona-panel {
+  border: 1px dashed rgba(21, 32, 43, 0.24);
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.dev-persona-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.dev-persona-head h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 900;
+  color: #15202b;
+}
+
+.dev-persona-badge {
+  border-radius: 999px;
+  background: #eef1f3;
+  color: #15202b;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.dev-persona-panel p {
+  margin: 0 0 12px;
+  color: #4e5d69;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.dev-persona-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.dev-persona-btn {
+  flex: 1;
+  min-width: 180px;
+  border: 1px solid rgba(21, 32, 43, 0.16);
+  background: #fff;
+  color: #15202b;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.dev-persona-btn.is-active {
+  border-color: #0f7b45;
+  background: linear-gradient(160deg, #129256, #0f7b45);
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(15, 123, 69, 0.22);
+}
+
 .section-header-row {
   display: flex;
   align-items: center;
@@ -1074,6 +1144,7 @@
 
   .section-header-row,
   .featured-toolbar,
+  .dev-persona-head,
   .footer-bottom {
     flex-direction: column;
     align-items: flex-start;

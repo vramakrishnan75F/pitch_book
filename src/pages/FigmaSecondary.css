@@ -231,6 +231,105 @@
   text-decoration: none;
 }
 
+.open-game-metric-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.open-game-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px;
+  border-radius: 999px;
+  border: 1px solid rgba(21, 32, 43, 0.1);
+  background: linear-gradient(180deg, #ffffff, #f3f7fa);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 4px 10px rgba(21, 32, 43, 0.08);
+}
+
+.open-game-stepper-btn {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(21, 32, 43, 0.15);
+  background: #fff;
+  color: #15202b;
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.14s ease, box-shadow 0.14s ease, background-color 0.14s ease, border-color 0.14s ease;
+}
+
+.open-game-stepper-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: rgba(21, 32, 43, 0.28);
+  box-shadow: 0 4px 12px rgba(21, 32, 43, 0.14);
+}
+
+.open-game-stepper-btn:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(21, 32, 43, 0.16);
+}
+
+.open-game-stepper-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(15, 123, 69, 0.22);
+}
+
+.open-game-stepper-btn.is-minus:hover:not(:disabled) {
+  background: #fff5f5;
+  border-color: rgba(185, 28, 28, 0.3);
+}
+
+.open-game-stepper-btn.is-plus:hover:not(:disabled) {
+  background: #f2fbf6;
+  border-color: rgba(15, 123, 69, 0.38);
+}
+
+.open-game-stepper-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+  transform: none;
+  box-shadow: none;
+}
+
+.open-game-inline-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #e8f5ee;
+  color: #0f7b45;
+  border-radius: 999px;
+  padding: 4px 8px 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.open-game-inline-field input {
+  border: 1px solid rgba(15, 123, 69, 0.28);
+  background: #fff;
+  color: #15202b;
+  border-radius: 999px;
+  height: 24px;
+  min-width: 12ch;
+  max-width: 36ch;
+  padding: 0 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.open-game-inline-field input:focus-visible {
+  outline: none;
+  border-color: rgba(15, 123, 69, 0.52);
+  box-shadow: 0 0 0 3px rgba(15, 123, 69, 0.16);
+}
+
 .figma-actions button,
 .figma-card > button,
 .figma-slots button,
@@ -426,6 +525,54 @@
   color: #15202b;
   font-weight: 800;
   text-align: right;
+}
+
+.open-game-row-action {
+  border: 1px solid rgba(21, 32, 43, 0.14);
+  background: #fff;
+  color: #15202b;
+  border-radius: 999px;
+  height: 30px;
+  padding: 0 12px;
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.14s ease, box-shadow 0.14s ease, background-color 0.14s ease, border-color 0.14s ease;
+}
+
+.open-game-row-action:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(21, 32, 43, 0.12);
+}
+
+.open-game-row-action:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(15, 123, 69, 0.22);
+}
+
+.open-game-row-action.is-positive {
+  background: #e9f9ef;
+  border-color: rgba(15, 123, 69, 0.28);
+  color: #0f7b45;
+}
+
+.open-game-row-action.is-positive:hover {
+  background: #dff5e8;
+  border-color: rgba(15, 123, 69, 0.42);
+}
+
+.open-game-row-action.is-danger {
+  background: #fff6f6;
+  border-color: rgba(176, 45, 45, 0.28);
+  color: #b02d2d;
+}
+
+.open-game-row-action.is-danger:hover {
+  background: #ffecec;
+  border-color: rgba(176, 45, 45, 0.42);
 }
 
 .success-grid {

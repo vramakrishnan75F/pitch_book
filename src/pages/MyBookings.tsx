@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Text from '../components/ui/Text'
+import { usePersona } from '../context/PersonaContext'
 import AppLayout from '../layouts/AppLayout'
 import './FigmaSecondary.css'
 
@@ -9,6 +10,8 @@ const bookings = [
 ]
 
 function MyBookings() {
+  const { persona } = usePersona()
+
   return (
     <AppLayout fullBleed showHeader={false} showFooter={false}>
       <main className="figma-page">
@@ -38,6 +41,9 @@ function MyBookings() {
               <Text as="p" unstyled className="figma-p">Date: {booking.date}</Text>
               <Text as="p" unstyled className="figma-p">Slot: {booking.slot}</Text>
               <div className="figma-actions">
+                {persona === 'host' && booking.status === 'Upcoming' && (
+                  <Link to="/open-games" className="success-link">Open this Game</Link>
+                )}
                 <Link to="/search" className="success-link">Book Similar</Link>
                 <Link to="/" className="success-link success-link-primary">Home</Link>
               </div>

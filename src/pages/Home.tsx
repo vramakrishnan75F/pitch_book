@@ -17,6 +17,7 @@ import {
   Zap,
 } from 'lucide-react'
 import FieldError from '../components/ui/FieldError'
+import { usePersona } from '../context/PersonaContext'
 import { useHomeBooking } from '../hooks/useHomeBooking'
 import AppLayout from '../layouts/AppLayout'
 import type { BaseBookingData } from '../types/booking'
@@ -177,6 +178,7 @@ function Home() {
   const [searchDate, setSearchDate] = useState('2025-08-03')
   const [activeTab, setActiveTab] = useState<'venues' | 'open'>('venues')
   const [wishlist, setWishlist] = useState<number[]>([])
+  const { persona, setPersona, currentUser } = usePersona()
 
   const { slots, selectedSlot, message, setSelectedSlot, setMessage } = useHomeBooking()
 
@@ -208,6 +210,7 @@ function Home() {
               </button>
               <div className="top-nav-links">
                 <button type="button" onClick={() => navigate('/search')}>Search</button>
+                <button type="button" onClick={() => navigate('/open-games')}>Open Games</button>
                 <button type="button" onClick={() => navigate('/bookings')}>My Bookings</button>
                 <button type="button" onClick={() => navigate('/profile')}>Profile</button>
               </div>
@@ -308,6 +311,36 @@ function Home() {
           </div>
         </section>
 
+        <section className="dev-persona-panel-wrap">
+          <div className="landing-shell">
+            <article className="dev-persona-panel">
+              <div className="dev-persona-head">
+                <h3>Developer Demo Mode</h3>
+                <span className="dev-persona-badge">Current Persona: {persona === 'host' ? 'Host' : 'Player'}</span>
+              </div>
+              <p>
+                Toggle persona to simulate permissions without authentication. Active user: {currentUser.name} ({currentUser.mobile})
+              </p>
+              <div className="dev-persona-actions">
+                <button
+                  type="button"
+                  className={`dev-persona-btn ${persona === 'host' ? 'is-active' : ''}`}
+                  onClick={() => setPersona('host')}
+                >
+                  I&apos;m a Host
+                </button>
+                <button
+                  type="button"
+                  className={`dev-persona-btn ${persona === 'player' ? 'is-active' : ''}`}
+                  onClick={() => setPersona('player')}
+                >
+                  I&apos;m a Player
+                </button>
+              </div>
+            </article>
+          </div>
+        </section>
+
         <section className="landing-sports">
           <div className="landing-shell">
             <div className="section-header-row">
@@ -346,7 +379,13 @@ function Home() {
                   type="button"
                   className="tab-btn"
                   data-active={activeTab === tab}
-                  onClick={() => setActiveTab(tab)}
+                  onClick={() => {
+                    if (tab === 'open') {
+                      navigate('/open-games')
+                      return
+                    }
+                    setActiveTab(tab)
+                  }}
                 >
                   {tab === 'venues' ? 'Featured Venues' : 'Open Games'}
                 </button>
@@ -437,7 +476,9 @@ function Home() {
               <p>
                 Join ongoing games and meet new players. Select your sport and area to see what is happening today.
               </p>
-              <button type="button" className="book-btn">Browse Open Games</button>
+              <button type="button" className="book-btn" onClick={() => navigate('/open-games')}>
+                Browse Open Games
+              </button>
             </div>
           )}
         </div>
